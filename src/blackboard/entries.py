@@ -47,3 +47,31 @@ class Goal(Entry):
 
     def summary(self) -> str:
         return self.question
+
+
+class SubQuestion(Entry):
+    type: Literal["subquestion"] = "subquestion"
+    question: str
+    goal_id: str
+
+    def summary(self) -> str:
+        return self.question
+
+
+class Finding(Entry):
+    type: Literal["finding"] = "finding"
+    subquestion_id: str
+    question: str
+    answer: str
+    sources: tuple[str, ...] = ()
+
+    def summary(self) -> str:
+        return self.answer
+
+
+class Report(Entry):
+    type: Literal["report"] = "report"
+    text: str
+
+    def summary(self) -> str:
+        return self.text
